@@ -1,24 +1,57 @@
-protected $fillable = [
-    'name', 'email', 'password', 'role',
-    'failed_attempts', 'locked_until', 'is_active',
-];
+<?php
 
-protected function casts(): array
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Authenticatable
 {
-    return [
-        'email_verified_at' => 'datetime',
-        'password'          => 'hashed',
-        'locked_until'      => 'datetime',
-        'is_active'         => 'boolean',
+    use HasFactory, Notifiable;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'role',
+        'failed_attempts',
+        'locked_until',
+        'is_active',
     ];
-}
 
-public function isAdmin(): bool
-{
-    return $this->role === 'admin';
-}
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-public function isLocked(): bool
-{
-    return $this->locked_until && $this->locked_until->isFuture();
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password'          => 'hashed',
+            'locked_until'      => 'datetime',
+            'is_active'         => 'boolean',
+        ];
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isLocked(): bool
+    {
+        return $this->locked_until && $this->locked_until->isFuture();
+    }
+
+    public function assignedTasks()
+    {
+        return $this->hasMany(Task::class, 'assigned_to');
+    }
+
+    public function auditLogs()
+    {
+        return $this->hasMany(AuditLog::class);
+    }
 }
