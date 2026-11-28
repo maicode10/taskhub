@@ -52,6 +52,15 @@
                     <button class="btn btn-purple w-100">Change Password</button>
                 </form>
 
+                {{-- back button so the user is not stuck on this page --}}
+                <div class="text-center mt-3">
+                    <a href="{{ route('dashboard') }}"
+                       class="btn btn-sm"
+                       style="border:1px solid var(--purple); color:var(--purple); border-radius:2px;">
+                        ← Back to dashboard
+                    </a>
+                </div>
+
             </div>
         </div>
 
