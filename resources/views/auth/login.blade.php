@@ -74,7 +74,7 @@
         background: #faf8ff;
     }
 
-    /* small stamp text, used only on 2 short lines */
+    /* small stamp text, used only on the date line */
     .stamp {
         font-family: 'Courier New', monospace;
         font-size: 12px;
@@ -102,7 +102,7 @@
                 <div class="rule-purple"></div>
                 <div style="font-size:12.5px; color:#777;">
                     Tarpaulin · Layout · Photocopy · Binding<br>
-                    Kauswagan, Cagayan de Oro · 0917 555 0143
+                    Carmen, Cagayan de Oro · 0917 555 0143
                 </div>
             </div>
 

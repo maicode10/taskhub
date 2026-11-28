@@ -9,7 +9,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // the shop owner, he is the only admin
+        // the shop owner, she is the only admin
         User::create([
             'name'     => 'Maerica Danelyne',
             'email'    => 'admin@taskhub.test',
