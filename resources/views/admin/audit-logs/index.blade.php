@@ -92,7 +92,7 @@
         </div>
 
         <div class="mt-3">
-            {{ $logs->links() }}
+            {{ $logs->links('pagination::bootstrap-5') }}
         </div>
     </div>
 </div>

@@ -44,3 +44,6 @@ Route::middleware('auth')->group(function () {
             ->name('staff.dashboard');
     });
 });
+
+// MEMBER 3 - TASK ROUTES
+require __DIR__.'/tasks.php';

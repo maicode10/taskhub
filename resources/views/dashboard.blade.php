@@ -3,6 +3,24 @@
 
 @section('content')
 
+<div class="card mb-4">
+    <div class="card-header bg-purple text-white">
+        Dashboard
+    </div>
+
+    <div class="card-body">
+        <h5>Welcome, {{ auth()->user()->name }}</h5>
+
+        <p class="text-muted">
+            Role: {{ auth()->user()->role }}
+        </p>
+
+        <a href="{{ route('password.form') }}"
+           class="btn btn-purple">
+            Change Password
+        </a>
+    </div>
+</div>
 
 <div class="card mb-4">
     <div class="card-header bg-purple text-white">
