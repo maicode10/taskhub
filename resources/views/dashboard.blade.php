@@ -1,30 +1,42 @@
+
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
-    <div class="col-md-8">
 
-        <div class="card">
-            <div class="card-top py-2 px-3">
-                <span class="fw-semibold">Dashboard</span>
-            </div>
 
-            <div class="card-body p-4">
-                <h5 class="mb-1">Welcome, {{ auth()->user()->name }}</h5>
-                <p class="text-muted small mb-4">
-                    Role: {{ auth()->user()->role }} · Signed in at {{ now()->format('M d, Y g:i A') }}
-                </p>
+<div class="card mb-4">
+    <div class="card-header bg-purple text-white">
+        Dashboard
+    </div>
 
-                <a href="{{ route('password.form') }}" class="btn btn-purple btn-sm">
-                    Change Password
-                </a>
-            </div>
-        </div>
+    <div class="card-body">
+        <h5>Welcome, {{ auth()->user()->name }}</h5>
 
-        <p class="text-muted small mt-3">
-            Note: this page is temporary. The admin and staff dashboards will replace it.
+        <p class="text-muted">
+            Role: {{ auth()->user()->role }}
         </p>
 
+        <a href="{{ route('password.form') }}"
+           class="btn btn-purple">
+            Change Password
+        </a>
     </div>
 </div>
+
+<div class="mb-4">
+    <h2 class="fw-bold text-purple">Staff Dashboard</h2>
+    <p class="text-muted">
+        Welcome to TaskHub. You are logged in as Staff.
+    </p>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5 class="fw-bold">Staff Workspace</h5>
+        <p class="text-muted">
+            Access your assigned tasks and monitor your work progress.
+        </p>
+    </div>
+</div>
+
 @endsection
