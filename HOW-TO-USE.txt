@@ -1,0 +1,63 @@
+MEMBER 1 FILES - TASKHUB
+
+HOW TO USE
+----------
+1. Copy the folders inside this zip into your taskhub project folder.
+   Let it overwrite the old files. The folders already match the
+   correct paths, so just drop them in C:\xampp\htdocs\taskhub
+
+2. Make sure your .env has these lines:
+
+       APP_TIMEZONE=Asia/Manila
+       SESSION_LIFETIME=15
+
+       DB_CONNECTION=mysql
+       DB_HOST=127.0.0.1
+       DB_PORT=3307
+       DB_DATABASE=taskhub
+       DB_USERNAME=root
+       DB_PASSWORD=
+
+   Change DB_PORT to 3306 if that is your MySQL port.
+
+3. Run these commands:
+
+       php artisan config:clear
+       php artisan view:clear
+       php artisan route:clear
+       php artisan migrate:fresh --seed
+       php artisan serve
+
+4. Open http://127.0.0.1:8000
+
+
+WHAT IS INSIDE
+--------------
+resources/views/layouts/app.blade.php       the shared layout, purple theme
+resources/views/auth/login.blade.php        the login page
+resources/views/auth/change-password.blade.php   change password + strength meter
+resources/views/dashboard.blade.php         temporary dashboard
+routes/web.php                              all the routes
+app/Http/Controllers/AuthController.php     login, logout, lockout, password rules
+database/seeders/DatabaseSeeder.php         the test accounts
+
+
+NOT INCLUDED (you already have these)
+-------------------------------------
+app/Models/User.php
+app/Models/Task.php
+app/Models/AuditLog.php
+app/Models/LoginAttempt.php
+database/migrations/...
+
+
+TEST ACCOUNTS
+-------------
+ADMIN
+  admin@taskhub.test   Admin@123
+
+STAFF
+  mai@taskhub.test     Staff@123
+  juve@taskhub.test    Staff@123
+  eric@taskhub.test    Staff@123
+  dani@taskhub.test    Staff@123
