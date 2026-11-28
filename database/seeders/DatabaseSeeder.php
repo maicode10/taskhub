@@ -9,13 +9,15 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        // the shop owner, he is the only admin
         User::create([
-            'name'     => 'Shop Owner',
+            'name'     => 'Maerica Danelyne',
             'email'    => 'admin@taskhub.test',
             'password' => 'Admin@123',
             'role'     => 'admin',
         ]);
 
+        // the 4 staff of the print shop
         $staff = [
             ['Mai',  'mai@taskhub.test'],
             ['Juve', 'juve@taskhub.test'],
