@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuditLogController;
+use App\Http\Controllers\DashboardController;
 
 // if somebody opens the website, send him to the login page
 Route::get('/', function () {
@@ -24,8 +26,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/change-password',  [AuthController::class, 'showChangePassword'])->name('password.form');
     Route::post('/change-password', [AuthController::class, 'changePassword'])->name('password.change');
 
-    // temporary page, Member 2 will replace this with the real dashboards
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // redirect users to their role-specific dashboard
+    Route::get('/dashboard', [DashboardController::class, 'redirect'])->name('dashboard');
+
+    // MEMBER 2 - ADMIN DASHBOARD AND AUDIT LOGS
+    Route::middleware('role:admin')->group(function () {
+        Route::get('/admin/dashboard', [DashboardController::class, 'admin'])
+            ->name('admin.dashboard');
+
+        Route::get('/admin/audit-logs', [AuditLogController::class, 'index'])
+            ->name('admin.audit-logs.index');
+    });
+
+    // MEMBER 2 - STAFF DASHBOARD
+    Route::middleware('role:staff')->group(function () {
+        Route::get('/staff/dashboard', [DashboardController::class, 'staff'])
+            ->name('staff.dashboard');
+    });
 });
